@@ -7,6 +7,13 @@ public class Main {
         random.nextBytes(keyStream);
         return keyStream;
     }
+    public static byte[] xor(byte[] text, byte[] keyStream) {
+        byte[] returnText = new byte[text.length];
+        for (int i = 0; i < text.length; i++) {
+            returnText[i] = (byte) (text[i] ^ keyStream[i]);
+        }
+        return returnText;
+    }
 
     public static void main(String[] args) {
         System.out.println("Hello world!");
