@@ -17,30 +17,6 @@ public class Main {
     }
 
 
-
-
-
-
-
-    
-    public static void main(String[] args) {
-        String plaintext = "Hello, world!";
-        String key = "why_is_this_key_different";
-        byte[] encryptedText = symmetricEncrypt(plaintext, key);
-        System.out.println("Encrypted message: " + bytesToHex(encryptedText));
-
-        String decryptedText = symmetricDecrypt(encryptedText, key);
-        System.out.println("Decrypted message: " + decryptedText);
-    }
-
-    public static String bytesToHex(byte[] bytes) {
-        String sb = "";
-        for (byte b : bytes) {
-            sb += (String.format("%02x", b));
-        }
-        return sb.toString();
-    }
-
 }
 
 
