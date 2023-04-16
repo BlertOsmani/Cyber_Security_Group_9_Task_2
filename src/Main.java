@@ -14,6 +14,18 @@ public class Main {
         }
         return returnText;
     }
+    
+     public static byte[] symmetricEncrypt(String plaintext, String key) {
+        byte[] keyStream = generateKeyStream(key, plaintext.length());
+        byte[] encryptedText = xor(plaintext.getBytes(), keyStream);
+        return encryptedText;
+    }
+
+    public static String symmetricDecrypt(byte[] ciphertext, String key) {
+        byte[] keyStream = generateKeyStream(key, ciphertext.length);
+        byte[] decryptedText = xor(ciphertext, keyStream);
+        return new String(decryptedText);
+    }
 
     public static void main(String[] args) {
         System.out.println("Hello world!");
