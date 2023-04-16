@@ -16,8 +16,34 @@ public class Main {
         return returnText;
     }
 
+    public static byte[] symmetricEncrypt(String plaintext, String key) {
+        byte[] keyStream = generateKeyStream(key, plaintext.length());
+        byte[] encryptedText = xor(plaintext.getBytes(), keyStream);
+        return encryptedText;
+    }
+
+    public static String symmetricDecrypt(byte[] ciphertext, String key) {
+        byte[] keyStream = generateKeyStream(key, ciphertext.length);
+        byte[] decryptedText = xor(ciphertext, keyStream);
+        return new String(decryptedText);
+    }
+    public static void main(String[] args) {
+        String plaintext = "Hello, world!";
+        String key = "why_is_this_key_different";
+        byte[] encryptedText = symmetricEncrypt(plaintext, key);
+        System.out.println("Encrypted message: " + bytesToHex(encryptedText));
+
+        String decryptedText = symmetricDecrypt(encryptedText, key);
+        System.out.println("Decrypted message: " + decryptedText);
+    }
+
+    public static String bytesToHex(byte[] bytes) {
+        String sb = "";
+        for (byte b : bytes) {
+            sb += (String.format("%02x", b));
+        }
+        return sb.toString();
+    }
+
 
 }
-
-
-
